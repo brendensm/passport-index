@@ -1,11 +1,14 @@
 library(httr)
 library(tidyverse)
+library(jsonlite)
 
 req <- GET("api.henleypassportindex.com/api/v3/countries")
 
 parsed <- req$content |> 
   rawToChar() |> 
   fromJSON()
+
+parsed$countries |> tibble()
 
 parsed$countries |> names()
 
@@ -25,6 +28,6 @@ parsed2 <- req2$content |>
   rawToChar() |> 
   fromJSON()
 
-parsed2$visa_on_arrival
+str(parsed2)
 
 
